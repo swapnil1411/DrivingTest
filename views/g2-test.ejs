@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="page-heading">
+                                <h2>G2 Test Booking</h2>
+                                <span class="subheading">Under Construction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-4">
+                <div class="container px-3">
+                    <div class="row">
+                      
+                        <form id="userForm" method="POST" action="/userData/store">
+                            <div class="col-5 justify-content-center">
+                                <p class="btn btn-lg p-0">Appointment</p>
+                                <div class="form-floating" >
+                                    <input class="form-control" name="date" id="date" type="date"
+                                        placeholder="Enter your desired date" 
+                                        onchange="toggle()" />
+                                            <label for="appointment">Appointment Date <span
+                                                    class="text-danger">*</span></label>
+                                </div>
+                                
+
+                               <div id="json">
+                                </div>
+                                   
+                               
+                            </div>
+                            <div class="col-5 justify-content-center">
+                                <p class="btn btn-lg p-0">Personal Information</p>
+                                <% if (message) { %>
+                                    <p class="text-danger">
+                                        <%= message %>
+                                    </p>
+                                    <% } %>
+                                        <div class="my-2">
+                                            <div class="form-floating">
+                                                <input class="form-control" name="fname" id="fname" type="text"
+                                                    placeholder="Enter your first name..." <% if(result) { %> value="<%=
+                                                    result.fname %>" readonly <% }%> />
+                                                        <label for="fname">First Name <span
+                                                                class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" name="lname" id="lname" type="text"
+                                                    placeholder="Enter your last name..." <% if(result) { %> value="<%=
+                                                    result.lname %>" readonly <% } %> />
+                                                        <label for="lname">Last Name <span
+                                                                class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" name="lnumber" id="lnumber" type="text"
+                                                    placeholder="Enter your license number..." <% if(result) { %>
+                                                value="<%= result.lnumber %>" readonly <% } %> />
+                                                        <label for="lnumber">License Number <span
+                                                                class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" name="age" id="age" type="number"
+                                                    placeholder="Enter your age..." <% if(result) { %> value="<%=
+                                                    result.age %>" readonly <% } %> />
+                                                        <label for="age">Your Age <span
+                                                                class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" name="birthDate" id="date" type="date"
+                                                    placeholder="Enter your birth date..." <% if(result) { %>
+                                                value="<%= result.birthDate ?
+                                                    result.birthDate.toISOString().split('T')[0] : '' %>"
+                                                    readonly
+                                                    <% } %>
+                                                        />
+                                                        <label for="date">Date of birth <span
+                                                                class="text-danger">*</span></label>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="col-5 justify-content-center">
+                                <p class="btn btn-lg p-0">Vehicle Information</p>
+                                <div class="my-2">
+                                    <div class="form-floating">
+                                        <input class="form-control" name="companyName" id="companyName" type="text"
+                                            placeholder="Enter your name..." <% if(result) { %> value="<%=
+                                            result.car_detail.companyName %>" readonly <% } %> />
+                                                <label for="companyName">Company Name <span
+                                                        class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="modelName" id="modelName" type="text"
+                                            placeholder="Enter your name..." <% if(result) { %> value="<%=
+                                            result.car_detail.modelName %>" readonly <% } %> />
+                                                <label for="modelName">Model Name <span
+                                                        class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="year" id="year" type="text"
+                                            placeholder="Enter your name..." <% if(result) { %> value="<%=
+                                            result.car_detail.year %>" readonly <% } %> />
+                                                <label for="year">Release Year <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="plateNumber" id="plateNumber" type="text"
+                                            placeholder="Enter your name..." <% if(result) { %> value="<%=
+                                            result.car_detail.plateNumber %>" readonly <% } %> />
+                                                <label for="plateNumber">Plate Number <span
+                                                        class="text-danger">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit Button-->
+                            <button class="btn text-uppercase" id="submitButton" type="submit"
+                                style="background-color: #00404e;color: white;" <% if(result) { %> disabled <% } %>
+                                    >Submit
+                            </button>
+                            <% if(result){ %>
+                                <p class="text-secondary text-capitalize"> Note: you can modify vehical information from
+                                    G page</p>
+                                <%}%>
+                        </form>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer-->
+            <%- include('layouts/footer'); -%>
+                <!-- Scripts-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                <script>
+const toggle = async() => {
+   let appointmentDate= document.getElementById('date').value;
+   
+  let date= fetch('/appointment/dates?appointment_date='+appointmentDate,{
+    method: 'GET',
+    
+  });
+  date .then(response => response.json())
+      .then(json => {
+       let data = json.data;
+       var parent = document.getElementById("json");
+       data.map(item =>{
+        var input = document.createElement("input");
+        var label = document.createElement("label");
+input.type='radio';
+input.name = 'time';
+input.id = 'time';
+input.value=item.time;
+label.textContent = item.time;
+
+
+
+
+parent.appendChild(input);
+parent.appendChild(label);
+       })
+       
+
+        
+        
+    
+    })
+  
+}
+
+                </script>
+              
+                <%- include('layouts/scripts'); -%>
+    </body>
+
+</html>

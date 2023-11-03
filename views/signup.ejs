@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="page-heading">
+                                <h2>Login / Registration</h2>
+                                <span class="subheading">Under Construction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-4">
+                <div class="container px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 justify-content-center col-xl-7">
+                            <p class="btn btn-lg p-0">Sign Up</p>
+                            <div class="my-2">
+                                <% if (message) { %>
+                                    <p class="text-danger">
+                                        <%= message %>
+                                    </p>
+                                    <% } %>
+                                <% if (alert) { %>
+                                    <p class="text-danger">
+                                        <%= alert %>
+                                    </p>
+                                    <% } %>
+                                        <form id="contactForm" method="POST" action="/auth/register">
+                                            <div class="form-floating">
+                                                <input class="form-control" id="email" type="email"
+                                                    placeholder="Enter your email..." name="email" <% if (userData) { %>
+                                                value="<%= userData.email %>"
+                                                    <% } %>
+                                                        />
+                                                        <label for="email">Email address</label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" id="password" type="password"
+                                                    placeholder="Enter your password..." name="password" <% if
+                                                    (userData) { %>
+                                                value="<%= userData.password %>"
+                                                    <% } %>/>
+                                                        <label for="password">Password</label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <input class="form-control" id="cpassword" type="password"
+                                                    placeholder="Confirm your password..." name="cpassword" />
+                                                <label for="cpassword">Confirm Password</label>
+                                            </div>
+                                            <br />
+                                            <select class="form-select form-select-lg mb-3 text-secondary"
+                                                aria-label=".form-select-lg example" name="usertype">
+                                                <option selected>Please select user type</option>
+                                                <option value="Driver" <% if (userData.usertype=='Driver' ) { %>
+                                                    selected
+                                                    <% } %> >Driver
+                                                </option>
+                                                <option value="Examiner" <% if (userData.usertype=='Examiner' ) { %>
+                                                    selected
+                                                    <% } %>>Examiner
+                                                </option>
+                                                <option value="Admin" <% if (userData.usertype=='Admin' ) { %>
+                                                    selected
+                                                    <% } %>>Admin
+                                                </option>
+                                            </select>
+                                            <br />
+                                            <br />
+                                            <!-- Submit Button-->
+                                            <button class="btn btn-primary float-end text-uppercase" id="submitButton"
+                                                type="submit"
+                                                style="background-color: #00404e;color: white;">Register</button>
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer-->
+            <%- include('layouts/footer'); -%>
+                <!-- Scripts-->
+                <%- include('layouts/scripts'); -%>
+    </body>
+
+</html>

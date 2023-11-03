@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header-->
+            <header class="masthead">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="page-heading">
+                                <h2>G Test Booking</h2>
+                                <span class="subheading">Under Construction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-4">
+                <div class="container px-2">
+                    <div class="row gx-4 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <% if (message) { %>
+                                <p class="text-danger">
+                                    <%= message %>
+                                </p>
+                                <% } %>
+                            <% if (success) { %>
+                                <p class="text-success">
+                                    <%= success %>
+                                </p>
+                                <% } %>
+                                    <% if (result) { %>
+                                        <table class="table my-5">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th scope="col" colspan="3">Personal Information</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">First Name</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <%=result.fname %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Last Name</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <%=result.lname %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">License Number</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <%= result.lnumber %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Age</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <%=result.age %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Birthdate</th>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <%= result.birthDate.toLocaleString("en-US", {month:'long',day:'numeric',year:'numeric'}) %>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="container">
+                                            <div class="row">
+                                                <form id="userForm" method="POST"
+                                                    action="/g-test/update/<%= result.lnumber %>">
+                                                    <div class="justify-content-center">
+                                                        <p class="btn btn-lg p-0">Vehicle Information</p>
+                                                        <div class="my-2">
+                                                            <div class="form-floating">
+                                                                <input class="form-control" name="companyName"
+                                                                    id="companyName" type="text"
+                                                                    placeholder="Enter your name..."
+                                                                    value="<%= result.car_detail.companyName %>" />
+                                                                <label for="companyName">Company Name</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input class="form-control" name="modelName"
+                                                                    id="modelName" type="text"
+                                                                    placeholder="Enter your name..."
+                                                                    value="<%=result.car_detail.modelName %>" />
+                                                                <label for="modelName">Model Name</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input class="form-control" name="year" id="year"
+                                                                    type="text" placeholder="Enter your name..."
+                                                                    value="<%=result.car_detail.year %>" />
+                                                                <label for="year">Release Year</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input class="form-control" name="plateNumber"
+                                                                    id="plateNumber" type="text"
+                                                                    placeholder="Enter your name..."
+                                                                    value="<%=result.car_detail.plateNumber %>" />
+                                                                <label for="plateNumber">Plate Number</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Submit Button-->
+                                                    <button class="btn text-uppercase" id="submitButton" type="submit"
+                                                        style="background-color: #00404e;color: white;">Update
+                                                    </button>
+                                                    <!-- <button class="btn text-uppercase" type="submit"
+                                                        style="background-color: #00404e;color: white;">Back
+                                                    </button> -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <% } else { %>
+                                        <p>No data found</p>
+                                        <% } %>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer-->
+            <%- include('layouts/footer'); -%>
+                <!-- Scripts-->
+                <%- include('layouts/scripts'); -%>
+    </body>
+
+</html>
