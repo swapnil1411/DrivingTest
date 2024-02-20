@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const expressSession = require('express-session');
 
 //Database Connection
-mongoose.connect('')
+mongoose.connect('mongodb+srv://swapnilnanavati81:Swapnil%4020@cluster0.wboggmb.mongodb.net/?retryWrites=true&w=majority')
 //change uname $pasword and enter database name
 
 // Model Files
