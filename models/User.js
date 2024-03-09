@@ -35,6 +35,10 @@ const UserSchema = new Schema({
       type:String,
       default:null,
    },
+   examResult: {
+      type:Boolean,
+      default:false,
+   },
    car_detail: {
       companyName: {
          type: String,

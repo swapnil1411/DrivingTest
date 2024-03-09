@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+<body>
+    <!-- Navigation-->
+    <%- include('layouts/navbar'); -%>
+    <!-- Page Header-->
+    <header class="masthead">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h2>Exam</h2>
+                        <span class="subheading">Driver Examination</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 justify-content-center col-xl-7">
+                    <div class="my-2">
+                        <form method="POST" action="/appointment/exam" id="examForm">
+                            <div class="user-details">
+                                <h4>Select Driver and Exam Result</h4>
+                                <div>
+                                    <select class="form-select" id="fName" name="fName">
+                                        <option value="" selected disabled>Select Driver</option>
+                                        <% userData.forEach(function(user) { %>
+                                            <option value="<%= user.fname %>"><%= user.fname %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div class="exam-result">
+                                    <h4>Exam Result</h4>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="examResult" id="pass" value="pass">
+                                        <label class="form-check-label" for="pass">
+                                            Pass
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="examResult" id="fail" value="fail">
+                                        <label class="form-check-label" for="fail">
+                                            Fail
+                                        </label>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <button class="btn btn-primary float-end text-uppercase" type="submit">Submit Result</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%>
+    <!-- Scripts-->
+    <%- include('layouts/scripts'); -%>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       
+    </script>
+</body>
+
+</html>

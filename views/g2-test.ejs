@@ -153,6 +153,7 @@ const toggle = async() => {
        data.map(item =>{
         var input = document.createElement("input");
         var label = document.createElement("label");
+       
 input.type='radio';
 input.name = 'time';
 input.id = 'time';
@@ -164,6 +165,7 @@ label.textContent = item.time;
 
 parent.appendChild(input);
 parent.appendChild(label);
+
        })
        
 

@@ -13,8 +13,12 @@
                <li class="nav-item" ><a id="g2_test" class="nav-link px-lg-3 py-3 py-lg-4" href="/g2-test">g2_test</a></li>
                <li class="nav-item" ><a class="nav-link px-lg-3 py-3 py-lg-4" href="/g-test">g_test</a></li>
                <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
-            <% } else if (loggedIn) { %>
+            <% } else if (loggedIn && usertype=="Admin") {%>
                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment">Appointment</a></li>
+               <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
+            
+            <% } else if (loggedIn && usertype=="Examiner") { %>
+               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment/exam">Exams</a></li>
                <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
             <% } %>
             <% if (!loggedIn) { %>

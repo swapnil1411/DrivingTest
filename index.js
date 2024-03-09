@@ -27,7 +27,8 @@ const LogOutController = require('./controllers/logout');
 const AppointmentController = require('./controllers/appointment_page');
 const AppointmentDateController = require('./controllers/appointment_post');
 const AppointmentUserController = require('./controllers/appointment_user');
-
+const AppointmentExamController = require('./controllers/appointment_exam');
+const AppointmentExamDataController = require('./controllers/appointment_exam_data');
 // define middleware
 // const validateMiddleware = require('./middleware/validateMiddleware');
 const authMiddleware = require('./middleware/authMiddleware');
@@ -51,18 +52,22 @@ app.use(expressSession({
 }))
 
 global.loggedIn = null;
+global.usertype = null;
 
-app.use("*", (req, res, next) => {
-   
+app.use("*",async (req, res, next) => {
+   const user = await User.findById(req.session.userId);
+  
    loggedIn = req.session.userId;
    next()
 });
 
 global.isDriver = null;
 
+
 app.use("*", async (req, res, next) => {
    try {
       const user = await User.findById(req.session.userId);
+      usertype = user.usertype;
       isDriver = user && user.usertype === 'Driver';
    } catch (error) {
       // Handle the error if User.findById() fails
@@ -103,5 +108,9 @@ app.get('/appointment',authMiddleware, AppointmentController);
 app.post('/appointment/date', AppointmentDateController);
 
 app.get('/appointment/dates',AppointmentUserController);
+
+app.get('/appointment/exam', AppointmentExamController);
+
+app.post('/appointment/exam', AppointmentExamDataController);
 
 app.use((req, res) => res.render('notfound'));
