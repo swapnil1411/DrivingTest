@@ -1,11 +1,12 @@
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
+require('dotenv').config()
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
 
 //Database Connection
-mongoose.connect('mongodb+srv://swapnilnanavati81:Swapnil%4020@cluster0.wboggmb.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.DB_URL)
 //change uname $pasword and enter database name
 
 // Model Files
