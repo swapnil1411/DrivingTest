@@ -52,8 +52,7 @@ app.use(expressSession({
    secret: "Drivers App"
 }))
 
-global.loggedIn = null;
-global.usertype = null;
+
 
 app.use("*",async (req, res, next) => {
    const user = await User.findById(req.session.userId);
@@ -62,14 +61,16 @@ app.use("*",async (req, res, next) => {
    next()
 });
 
-global.isDriver = null;
 
+global.user =null;
 
 app.use("*", async (req, res, next) => {
    try {
-      const user = await User.findById(req.session.userId);
-      usertype = user.usertype;
-      isDriver = user && user.usertype === 'Driver';
+      const tempuser = await User.findById(req.session.userId);
+     
+      user= tempuser;
+      console.log("🚀 ~ app.use ~ user:", user)
+      
    } catch (error) {
       // Handle the error if User.findById() fails
       console.error('Error while fetching user data:', error);

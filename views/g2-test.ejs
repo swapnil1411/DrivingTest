@@ -139,46 +139,38 @@
                 <!-- Scripts-->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                 <script>
-const toggle = async() => {
-   let appointmentDate= document.getElementById('date').value;
-   
-  let date= fetch('/appointment/dates?appointment_date='+appointmentDate,{
-    method: 'GET',
-    
-  });
-  date .then(response => response.json())
-      .then(json => {
-       let data = json.data;
-       var parent = document.getElementById("json");
-       data.map(item =>{
-        var input = document.createElement("input");
-        var label = document.createElement("label");
-       
-input.type='radio';
-input.name = 'time';
-input.id = 'time';
-input.value=item.time;
-label.textContent = item.time;
-
-
-
-
-parent.appendChild(input);
-parent.appendChild(label);
-
-       })
-       
-
-        
-        
-    
-    })
-  
-}
-
+                    const toggle = async () => {
+                        let appointmentDate = document.getElementById('date').value;
+                
+                        let date = fetch('/appointment/dates?appointment_date=' + appointmentDate, {
+                            method: 'GET',
+                        });
+                        date.then(response => response.json())
+                            .then(json => {
+                                let data = json.data;
+                                var parent = document.getElementById("json");
+                
+                                // Clear existing content of the parent div
+                                parent.innerHTML = '';
+                
+                                data.map(item => {
+                                    var input = document.createElement("input");
+                                    var label = document.createElement("label");
+                
+                                    input.type = 'radio';
+                                    input.name = 'time';
+                                    input.id = 'time';
+                                    input.value = item.time;
+                                    label.textContent = item.time;
+                
+                                    // Append new input and label elements
+                                    parent.appendChild(input);
+                                    parent.appendChild(label);
+                                })
+                            })
+                    }
                 </script>
-              
-                <%- include('layouts/scripts'); -%>
+                         <%- include('layouts/scripts'); -%>
     </body>
 
 </html>

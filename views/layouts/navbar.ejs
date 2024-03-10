@@ -1,31 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
    <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="/">DriveTest Kiosk</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-         Menu
-         <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-         <ul class="navbar-nav ms-auto py-4 py-lg-0">
-            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Dashboard</a></li>
-            <% if (loggedIn && isDriver) { %>
-               <li class="nav-item" ><a id="g2_test" class="nav-link px-lg-3 py-3 py-lg-4" href="/g2-test">g2_test</a></li>
-               <li class="nav-item" ><a class="nav-link px-lg-3 py-3 py-lg-4" href="/g-test">g_test</a></li>
-               <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
-            <% } else if (loggedIn && usertype=="Admin") {%>
-               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment">Appointment</a></li>
-               <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
-            
-            <% } else if (loggedIn && usertype=="Examiner") { %>
-               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment/exam">Exams</a></li>
-               <li class="nav-item" ><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
-            <% } %>
-            <% if (!loggedIn) { %>
-               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/login">login</a></li>
-               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/register">SignUp</a></li>
-            <% } %>
-         </ul>
-      </div>
+       <a class="navbar-brand" href="/">DriveTest Kiosk</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+           Menu
+           <i class="fas fa-bars"></i>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarResponsive">
+           <ul class="navbar-nav ms-auto py-4 py-lg-0">
+               <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Dashboard</a></li>
+
+               <% if (user && user.usertype === "Driver") { %>
+                   <% if (user.car_detail && user.car_detail.companyName) { %>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/g-test">g test</a></li>
+                   <% } %>
+
+                  
+                   <li class="nav-item"><a id="g2_test" class="nav-link px-lg-3 py-3 py-lg-4" href="/g2-test">g2 test</a></li>
+                   <li class="nav-item"><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
+               <% } else if (user && user.usertype === "Admin") { %>
+                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment">Appointment</a></li>
+                   <li class="nav-item"><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
+               <% } else if (user && user.usertype === "Examiner") { %>
+                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/appointment/exam">Exams</a></li>
+                   <li class="nav-item"><a id="logout" class="nav-link px-lg-3 py-3 py-lg-4" href="/auth/logout">Logout</a></li>
+               <% } else { %>
+                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/login">Login</a></li>
+                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/register">SignUp</a></li>
+               <% } %>
+           </ul>
+       </div>
    </div>
 </nav>
